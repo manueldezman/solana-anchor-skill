@@ -1,0 +1,7 @@
+interface:
+  display_name: "Solana Anchor"
+  short_description: "Scaffold, debug, and test Anchor programs"
+  default_prompt: "Use $solana-anchor to scaffold Anchor projects, install or recover Anchor CLI setup, build/debug programs, or generate runnable tests."
+
+policy:
+  allow_implicit_invocation: true
