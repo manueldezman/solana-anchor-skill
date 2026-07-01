@@ -62,13 +62,13 @@ Official individual Solana CLI install command:
 sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
 ```
 
-Observed install validation notes to preserve:
+Production install notes:
 
 - The official Solana quick installer may update Rust before installing Solana CLI.
-- It may attempt apt package installation through `sudo`; non-interactive shells can fail with "a terminal is required to read the password".
+- It may attempt apt package installation through `sudo`; non-interactive shells can fail if a password prompt is required.
 - The individual Solana CLI installer can sit silently at "downloading stable installer" for several minutes and still complete successfully. Wait before declaring it stalled.
 - A successful Solana CLI install may add `export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"` to `~/.profile`; hydrate PATH manually in the current shell before verifying.
-- `cargo install --git https://github.com/solana-foundation/anchor avm --force` can spend a long time compiling. In validation it installed `avm 1.1.2` after about 11 minutes.
+- `cargo install --git https://github.com/solana-foundation/anchor avm --force` can spend a long time compiling. Keep progress updates honest and wait for completion before judging the install.
 - AVM's generated `anchor` shim may hang while the versioned binary works. Verify `$HOME/.avm/bin/anchor-<version> --version`; if it works, repair PATH-visible symlinks or report the shim issue.
 - After any interrupted install, re-run `anchor --version`, `solana --version`, and `avm --version` before assuming anything was installed.
 

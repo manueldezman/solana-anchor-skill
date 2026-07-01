@@ -29,7 +29,7 @@ Before running `anchor init`:
 
 ## Anchor 1.1 Scaffold Shape
 
-Observed with `anchor-cli 1.1.2`:
+When Anchor generates a Rust/LiteSVM scaffold:
 
 - `Anchor.toml` includes `skip_local_validator = true`.
 - `[scripts] test = "cargo test"`.
