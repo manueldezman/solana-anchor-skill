@@ -111,7 +111,7 @@ solana-anchor-skill/
 Clone the repo and run the installer:
 
 ```bash
-git clone <your-public-repo-url>
+git clone https://github.com/manueldezman/solana-anchor-skill.git
 cd solana-anchor-skill
 ./install.sh
 ```

@@ -111,4 +111,4 @@ echo "Installed solana-anchor skill to:"
 echo "  $DEST"
 echo ""
 echo "Try:"
-echo '  Use $solana-anchor to generate tests for this Anchor program.'
+echo '  Generate tests for this Anchor program. Detect the existing Anchor test setup first.'
