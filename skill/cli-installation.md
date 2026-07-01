@@ -66,8 +66,10 @@ Observed install validation notes to preserve:
 
 - The official Solana quick installer may update Rust before installing Solana CLI.
 - It may attempt apt package installation through `sudo`; non-interactive shells can fail with "a terminal is required to read the password".
-- The quick installer and individual Solana CLI installer can both stall during the "downloading stable installer" phase; if so, stop cleanly and report the phase reached.
-- `cargo install --git https://github.com/solana-foundation/anchor avm --force` can spend a long time compiling and may stall during the final `avm` compile step on constrained hosts. If that happens, interrupt cleanly and verify `avm --version`; the binary may not be installed.
+- The individual Solana CLI installer can sit silently at "downloading stable installer" for several minutes and still complete successfully. Wait before declaring it stalled.
+- A successful Solana CLI install may add `export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"` to `~/.profile`; hydrate PATH manually in the current shell before verifying.
+- `cargo install --git https://github.com/solana-foundation/anchor avm --force` can spend a long time compiling. In validation it installed `avm 1.1.2` after about 11 minutes.
+- AVM's generated `anchor` shim may hang while the versioned binary works. Verify `$HOME/.avm/bin/anchor-<version> --version`; if it works, repair PATH-visible symlinks or report the shim issue.
 - After any interrupted install, re-run `anchor --version`, `solana --version`, and `avm --version` before assuming anything was installed.
 
 ## Messaging Guidance
@@ -84,5 +86,6 @@ Use concise progress updates:
 - If the official Solana installer fails because `sudo` cannot prompt, report that host package installation is blocked and ask whether to continue with user-space Anchor-only recovery.
 - If Solana CLI is still missing after Anchor installs, do not claim `anchor test` is fully validated; report that local-validator testing remains blocked.
 - If AVM compilation stalls or is interrupted, verify whether `avm` exists before continuing.
+- If `anchor --version` hangs through the AVM shim, test the versioned binary directly and report or repair the symlink target.
 - If `avm install latest` fails, retry with the version required by the project if `Anchor.toml` or `Cargo.toml` indicates one.
 - If PATH hydration fails, report the exact binary paths checked and the command output.

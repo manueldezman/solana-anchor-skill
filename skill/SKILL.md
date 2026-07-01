@@ -43,6 +43,7 @@ Use this skill for Anchor program scaffolding, CLI setup recovery, account/PDA d
 | Generate tests | [testing-anchor.md](testing-anchor.md) |
 | TypeScript/Mocha tests | [typescript-tests.md](typescript-tests.md) |
 | Rust integration tests | [rust-tests.md](rust-tests.md) |
+| Guardrails and anti-patterns | [anti-patterns.md](anti-patterns.md) |
 | Links and ecosystem references | [resources.md](resources.md) |
 
 ## Delivery Expectations

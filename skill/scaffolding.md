@@ -21,10 +21,21 @@ Before running `anchor init`:
 
 ## New Project Defaults
 
-- Keep Anchor's default TypeScript test harness for brand-new projects unless the user requests Rust tests.
+- Do not assume new Anchor projects use TypeScript. Anchor `1.1.2` scaffolds a Rust/LiteSVM test layout by default, with no `package.json`.
+- After `anchor init`, inspect `Anchor.toml` and generated tests before choosing the next test workflow.
 - Add reusable PDA derivation helpers in tests when the program uses PDAs.
 - Keep account sizing constants near account structs.
 - Use custom errors for business rules that are not captured by Anchor constraints.
+
+## Anchor 1.1 Scaffold Shape
+
+Observed with `anchor-cli 1.1.2`:
+
+- `Anchor.toml` includes `skip_local_validator = true`.
+- `[scripts] test = "cargo test"`.
+- generated tests live under `programs/<program>/tests/*.rs`.
+- generated Rust tests use LiteSVM and include the deployed program bytes from `target/deploy/<program>.so`.
+- raw `cargo test` can fail before `anchor build` or `anchor test` creates the `.so`; run `anchor test` for the first full validation.
 
 ## Handoff After Scaffolding
 

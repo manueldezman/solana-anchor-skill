@@ -16,7 +16,7 @@ Decision:
 - If TypeScript tests already exist, extend TypeScript/Mocha and read [typescript-tests.md](typescript-tests.md).
 - If Rust integration tests already exist, extend Rust and read [rust-tests.md](rust-tests.md).
 - If both exist, choose the style with more existing coverage and report that choice.
-- If neither exists, default to TypeScript for a normal Anchor scaffold and Rust when the repo is Rust-only or has no Node toolchain.
+- If neither exists, inspect the Anchor version and generated layout before choosing. Anchor `1.1.2` scaffolds Rust/LiteSVM tests by default, so prefer Rust for that layout. Use TypeScript only when the project has Node/Mocha wiring or the user requests it.
 
 ## Coverage To Generate
 
@@ -32,11 +32,13 @@ For every instruction exposed by the IDL:
 
 ## Environment Selection
 
-Default:
+Default for existing projects:
 
 ```bash
 anchor test
 ```
+
+For Anchor `1.1.2` Rust/LiteSVM scaffolds, use `anchor test` for the first full run because it builds `target/deploy/<program>.so` before invoking the configured test script. Running `cargo test` first can fail when tests call `include_bytes!(concat!(env!("CARGO_TARGET_TMPDIR"), "/../deploy/<program>.so"))`.
 
 Use Surfpool only when the program reads accounts that cannot be realistically faked locally:
 

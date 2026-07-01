@@ -97,6 +97,7 @@ solana-anchor-skill/
 └── skill/
     ├── SKILL.md
     ├── cli-installation.md
+    ├── anti-patterns.md
     ├── program-patterns.md
     ├── resources.md
     ├── rust-tests.md
@@ -169,7 +170,8 @@ Generated tests should be runnable and should match the target project:
 
 - TypeScript projects use `@coral-xyz/anchor`, Mocha, and Chai.
 - Rust test projects use the existing `solana-program-test` or LiteSVM pattern.
-- Local validator is the default environment.
+- Anchor `1.1.2` scaffolds Rust/LiteSVM tests by default, so new-project test generation should inspect the generated layout before assuming TypeScript.
+- Local validator is the default for validator-backed tests; LiteSVM scaffolds can use `skip_local_validator = true`.
 - Surfpool is reserved for programs that need forked external state.
 
 Every test-generation task should end with a coverage-gap table so the developer can see what was generated and what still needs manual fixtures or live-state setup.

@@ -77,6 +77,13 @@ When LiteSVM is detected, use the existing project pattern. The generated test m
 - submit the transaction through LiteSVM.
 - fetch and deserialize account state.
 
+Anchor `1.1.2` scaffold note:
+
+- generated tests are placed at `programs/<program>/tests/*.rs`.
+- generated LiteSVM tests load the SBF program with `include_bytes!(concat!(env!("CARGO_TARGET_TMPDIR"), "/../deploy/<program>.so"))`.
+- run `anchor test` before raw `cargo test` so the deploy artifact exists.
+- `Anchor.toml` may set `skip_local_validator = true` because LiteSVM does not need a local validator process.
+
 ## Failure Assertions
 
 Generate negative tests for:
